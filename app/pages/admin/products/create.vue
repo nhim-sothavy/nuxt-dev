@@ -1,0 +1,1 @@
+<template><div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 max-w-4xl py-10"><p class="text-xs font-bold uppercase tracking-[.2em] text-brand">Admin demo</p><h1 class="mt-2 text-4xl font-semibold tracking-tight">Add product<span class="text-brand">.</span></h1><AdminProductForm/></div></template>

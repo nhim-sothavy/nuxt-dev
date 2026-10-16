@@ -1,0 +1,2 @@
+<script setup lang="ts">const shop=useShop()</script>
+<template><Transition enter-active-class="transition duration-200" enter-from-class="opacity-0 translate-y-2" leave-active-class="transition duration-200" leave-to-class="opacity-0 translate-y-2"><div v-if="shop.notice" class="fixed bottom-5 right-5 z-[100] max-w-sm rounded-2xl px-5 py-4 text-sm font-semibold text-white shadow-2xl" :class="shop.notice.kind==='error'?'bg-red-600':shop.notice.kind==='info'?'bg-ink':'bg-brand'">{{ shop.notice.text }}</div></Transition></template>

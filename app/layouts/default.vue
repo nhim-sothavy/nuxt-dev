@@ -1,10 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div>
-    Layout: default
-    <slot />
-  </div>
+  <slot />
 </template>
-
-<style scoped></style>

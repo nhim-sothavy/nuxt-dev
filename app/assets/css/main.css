@@ -2,9 +2,8 @@
 @import "@nuxt/ui";
 
 @theme {
-  --font-sans: 'Manrope', sans-serif;
-}
-
-:root {
-  --ui-radius: 0.375rem;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #101114;
+  --color-brand: #315efb;
+  --color-mist: #f5f6f8;
 }

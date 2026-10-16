@@ -11,11 +11,10 @@
 
       <template #right>
         <UButton to="https://github.com/nuxt-ui-templates/starter" target="_blank" icon="i-simple-icons-github"
-          aria-label="GitHub" color="neutral" variant="ghost" />
+                 aria-label="GitHub" color="neutral" variant="ghost" />
       </template>
     </UFooter>
   </div>
-
 </template>
 
 <style scoped></style>
