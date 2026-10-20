@@ -11,43 +11,40 @@
     description: "Discover modern essentials and thoughtful everyday fashion.",
   });
   const items = [
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSGMBR3SY-mf-qrEiminCWS4sGuNuvdYg8SGuFP9Nsvg&s=10',
-  'https://picsum.photos/640/640?random=2',
-  'https://picsum.photos/640/640?random=3',
-  'https://picsum.photos/640/640?random=4',
-  'https://picsum.photos/640/640?random=5',
-  'https://picsum.photos/640/640?random=6'
+  'https://template.canva.com/EAE6-K3qkzk/2/0/1600w-xzuyujO7aVc.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T024408Z&X-Amz-Expires=29544&X-Amz-Signature=8d2e56f950b9e673993188ac698229d6227927f2aa7f30fb6ea20e4d3550b706&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A56%3A32%20GMT',
+  'https://template.canva.com/EAE-p1QPW_4/2/0/1600w-j-u1jFPylT4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T214106Z&X-Amz-Expires=47062&X-Amz-Signature=b5f3c4a5ac152151f67fe1b8776c586c604dcc1a50b7bf07702a3d872d13e5ae&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A45%3A28%20GMT',
+  'https://template.canva.com/EAFgoIbXL34/2/0/1600w-DWBM9PCn-0w.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T133115Z&X-Amz-Expires=77869&X-Amz-Signature=23bd601351551b41ebbdd4a5596553753116155329c507a6fc07992d78827d96&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2011%3A09%3A04%20GMT',
 ]
 </script>
 <template>
   <div>
-  <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 sm:py-20 overflow-hidden lg:py-0">
-    <UCarousel
-      v-slot="{ item }"
-      :items="items"
-      loop
-      arrows
-      :autoplay="{ delay: 2000 }"
-      wheel-gestures
-      :prev="{ variant: 'solid' }"
-      :next="{ variant: 'solid' }"
-      :ui="{
-        item: 'ps-0 w-full',
-        prev: 'sm:start-8',
-        next: 'sm:end-8',
-        container: 'ms-0'
-      }"
-      class="w-auto"
-    >
-      <img
-        :src="item"
-        alt="Featured clothing collection"
-        class="block h-[400px] w-full object-cover sm:h-[500px] lg:h-[600px]"
-      />
-    </UCarousel>
-  </section>
-
-    <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 sm:py-20">
+  
+<section class="mx-auto w-full max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8">
+  <UCarousel
+    v-slot="{ item }"
+    :items="items"
+    loop
+    arrows
+    :autoplay="{ delay: 2000 }"
+    wheel-gestures
+    :prev="{ variant: 'solid' }"
+    :next="{ variant: 'solid' }"
+    :ui="{
+      item: 'ps-0 basis-full',
+      prev: 'sm:start-8',
+      next: 'sm:end-8',
+      container: 'ms-0'
+    }"
+    class="w-full"
+  >
+    <img
+      :src="item"
+      alt="Featured clothing collection"
+      class="block h-[250px] w-full object-cover sm:h-[400px] lg:h-[600px]"
+    />
+  </UCarousel>
+</section>
+    <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 sm:py-8">
       <div class="mb-7 flex items-end justify-between">
         <div>
           <h2 class="mt-2 text-3xl font-semibold tracking-[-.05em] sm:text-4xl">
@@ -104,19 +101,14 @@
         >
       </div>
     </section>
-    <section class="bg-mist py-16 sm:py-20">
+    <section class="bg-mist py-16 sm:py-10">
       <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-8 flex items-end justify-between">
           <div>
-            <p
-              class="text-[10px] font-bold uppercase tracking-[.2em] text-brand"
-            >
-              Just landed
-            </p>
             <h2
               class="mt-2 text-3xl font-semibold tracking-[-.05em] sm:text-4xl"
             >
-              New in, naturally.
+              New in, naturally
             </h2>
           </div>
           <NuxtLink
@@ -128,14 +120,11 @@
         <ProductGrid :products="newProducts" />
       </div>
     </section>
-    <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-10">
       <div class="mb-8 flex items-end justify-between">
         <div>
-          <p class="text-[10px] font-bold uppercase tracking-[.2em] text-brand">
-            Loved on repeat
-          </p>
           <h2 class="mt-2 text-3xl font-semibold tracking-[-.05em] sm:text-4xl">
-            The good stuff.
+            The good stuff
           </h2>
         </div>
         <NuxtLink

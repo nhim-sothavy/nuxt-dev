@@ -7,7 +7,7 @@ const saved = computed(() => shop.wishlist.includes(props.product.id));
 </script>
 <template>
   <article class="group min-w-0">
-    <div class="relative overflow-hidden rounded-2xl bg-mist">
+    <div class="relative overflow-hidden rounded-2xl shadow-xl/20">
       <NuxtLink :to="`/products/${product.slug}`" class="block"
         ><img
           :src="product.images[0]"
@@ -20,7 +20,7 @@ const saved = computed(() => shop.wishlist.includes(props.product.id));
           "
         /><span
           v-if="product.isNew"
-          class="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em]"
+          class="absolute left-3 top-3 rounded-full bg-pink-200 px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em]"
           >New</span
         ><span
           v-else-if="product.salePrice"
@@ -29,7 +29,7 @@ const saved = computed(() => shop.wishlist.includes(props.product.id));
         ></NuxtLink
       >
     <button
-        class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-xl shadow-sm transition hover:scale-105"
+        class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/100 inset-shadow-sm text-xl shadow-sm transition hover:scale-105"
         :class="{ 'text-red-500': saved, 'text-gray-600': !saved }"
         :aria-label="saved ? 'Remove from wishlist' : 'Add to wishlist'"
         @click="shop.toggleWishlist(product.id)"
@@ -37,7 +37,7 @@ const saved = computed(() => shop.wishlist.includes(props.product.id));
         {{ saved ? "♥" : "♡" }}
     </button>
         <button
-        class="absolute bottom-3 left-3 right-3 translate-y-3 rounded-full bg-white/95 py-3 text-[10px] font-bold uppercase tracking-[.16em] opacity-0 shadow transition duration-200 hover:bg-ink hover:text-white group-hover:translate-y-0 group-hover:opacity-100 max-sm:static max-sm:mt-2 max-sm:translate-y-0 max-sm:opacity-100"
+        class="absolute bottom-3 left-3 right-3 translate-y-3 rounded-full inset-shadow-sm inset-shadow-indigo-300 bg-pink-300 py-3 text-[10px] font-bold uppercase tracking-[.16em] opacity-0 shadow transition duration-200 hover:bg-ink hover:text-white group-hover:translate-y-0 group-hover:opacity-100 max-sm:static max-sm:mt-2 max-sm:translate-y-0 max-sm:opacity-100"
         @click="shop.addToCart(product)"
       >
         Quick add +

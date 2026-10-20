@@ -1,2 +1,216 @@
-<script setup lang="ts">const route=useRoute();const shop=useShop();const product=computed(()=>shop.productBySlug(String(route.params.slug)));const size=ref('');const color=ref('');const quantity=ref(1);const activeImage=ref(0);watch(product,p=>{if(p){size.value=p.sizes[0]||'One size';color.value=p.colors[0]||'Default'}},{immediate:true});const related=computed(()=>shop.products.filter(p=>p.id!==product.value?.id&&(p.category===product.value?.category||p.gender===product.value?.gender)).slice(0,4));watchEffect(()=>{if(product.value)useSeoMeta({title:`${product.value.name} — VY Clothing Store`,description:product.value.description})})</script>
-<template><div v-if="product" class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12"><div class="mb-6 text-xs text-gray-500"><NuxtLink to="/shop">Shop</NuxtLink> / {{ product.category }} / <span class="text-ink">{{ product.name }}</span></div><div class="grid gap-9 lg:grid-cols-2 lg:gap-16"><div class="grid grid-cols-1 gap-3 sm:grid-cols-[80px_1fr]"><div class="order-2 flex gap-3 sm:order-1 sm:flex-col"><button v-for="(img,i) in product.images" :key="img" class="overflow-hidden rounded-xl border-2" :class="activeImage===i?'border-brand':'border-transparent'" @click="activeImage=i"><img :src="img" :alt="product.name" class="h-20 w-16 object-cover"></button></div><div class="order-1 overflow-hidden rounded-2xl bg-mist sm:order-2"><img :src="product.images[activeImage]" :alt="product.name" class="aspect-[4/5] w-full object-cover"></div></div><div class="py-2 lg:py-8"><div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.2em] text-brand"><span>{{ product.brand }}</span><span>·</span><span>{{ product.category }}</span></div><h1 class="mt-3 text-3xl font-semibold tracking-[-.05em] sm:text-4xl">{{ product.name }}</h1><div class="mt-3 flex items-center gap-3"><span class="text-xl font-bold">${{ shop.price(product).toFixed(2) }}</span><span v-if="product.salePrice" class="text-sm text-gray-400 line-through">${{ product.price.toFixed(2) }}</span><span class="text-xs text-gray-500">★ {{ product.rating }} ({{ product.reviews }} reviews)</span></div><p class="mt-6 text-sm leading-7 text-gray-500">{{ product.description }}</p><div class="mt-7"><div class="mb-3 flex justify-between text-xs font-bold uppercase tracking-wider"><label>Color</label><span class="font-normal normal-case text-gray-500">{{ color }}</span></div><div class="flex flex-wrap gap-2"><button v-for="c in product.colors" :key="c" class="rounded-full border px-4 py-2 text-xs transition" :class="color===c?'border-ink bg-ink text-white':'border-gray-200 hover:border-ink'" @click="color=c">{{ c }}</button></div></div><div class="mt-6"><div class="mb-3 flex justify-between text-xs font-bold uppercase tracking-wider"><label>Size</label><span class="font-normal normal-case text-gray-500">Size guide</span></div><div class="flex flex-wrap gap-2"><button v-for="s in product.sizes" :key="s" class="min-w-12 rounded-xl border px-3 py-3 text-xs transition" :class="size===s?'border-ink bg-ink text-white':'border-gray-200 hover:border-ink'" @click="size=s">{{ s }}</button></div></div><div class="mt-7 flex gap-3"><div class="flex items-center rounded-full border border-gray-200"><button class="px-4 py-3" :disabled="quantity<=1" @click="quantity--">−</button><span class="min-w-5 text-center text-sm">{{ quantity }}</span><button class="px-4 py-3" :disabled="quantity>=product.stock" @click="quantity++">+</button></div><button class="flex-1 rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-brand disabled:opacity-50" :disabled="product.stock<1" @click="shop.addToCart(product,size,color,quantity)">{{ product.stock>0?'Add to bag — $'+(shop.price(product)*quantity).toFixed(2):'Out of stock' }}</button><button class="h-12 w-12 rounded-full border border-gray-200 text-xl" :aria-label="shop.wishlist.includes(product.id)?'Remove from wishlist':'Add to wishlist'" @click="shop.toggleWishlist(product.id)">{{ shop.wishlist.includes(product.id)?'♥':'♡' }}</button></div><p class="mt-4 text-xs text-gray-500">✓ {{ product.stock }} in stock · Demo inventory</p><div class="mt-8 border-t border-gray-100 pt-5"><p class="text-sm font-semibold">Easy everyday, thoughtfully chosen.</p><p class="mt-2 text-xs leading-6 text-gray-500">Shipping is calculated at checkout. Orders over $75 qualify for complimentary demo shipping.</p></div></div></div><section class="mt-16"><div class="mb-6 flex items-end justify-between"><h2 class="text-2xl font-semibold tracking-tight">You may also like</h2><NuxtLink to="/shop" class="text-xs font-bold uppercase tracking-wider">Shop all ↗</NuxtLink></div><ProductGrid :products="related"/></section></div><div v-else class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20"><EmptyState title="Piece not found" description="This product may have moved. Explore the rest of the collection." to="/shop" action-label="Shop all"/></div></template>
+<script setup lang="ts">
+const route = useRoute();
+const shop = useShop();
+const product = computed(() => shop.productBySlug(String(route.params.slug)));
+const size = ref("");
+const color = ref("");
+const quantity = ref(1);
+const activeImage = ref(0);
+watch(
+  product,
+  (p) => {
+    if (p) {
+      size.value = p.sizes[0] || "One size";
+      color.value = p.colors[0] || "Default";
+    }
+  },
+  { immediate: true },
+);
+const related = computed(() =>
+  shop.products
+    .filter(
+      (p) =>
+        p.id !== product.value?.id &&
+        (p.category === product.value?.category ||
+          p.gender === product.value?.gender),
+    )
+    .slice(0, 4),
+);
+watchEffect(() => {
+  if (product.value)
+    useSeoMeta({
+      title: `${product.value.name} — VY Clothing Store`,
+      description: product.value.description,
+    });
+});
+</script>
+<template>
+  <div
+    v-if="product"
+    class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+  >
+    <div class="mb-6 text-xs text-gray-500">
+      <NuxtLink to="/shop">Shop</NuxtLink> / {{ product.category }} /
+      <span class="text-ink">{{ product.name }}</span>
+    </div>
+    <div class="grid gap-9 lg:grid-cols-2 lg:gap-16">
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-[80px_1fr]">
+        <div class="order-2 flex gap-3 sm:order-1 sm:flex-col">
+          <button
+            v-for="(img, i) in product.images"
+            :key="img"
+            class="overflow-hidden rounded-xl border-2"
+            :class="activeImage === i ? 'border-brand' : 'border-transparent'"
+            @click="activeImage = i"
+          >
+            <img
+              :src="img"
+              :alt="product.name"
+              class="h-20 w-16 object-cover"
+            />
+          </button>
+        </div>
+        <div class="order-1 overflow-hidden rounded-2xl bg-mist sm:order-2">
+          <img
+            :src="product.images[activeImage]"
+            :alt="product.name"
+            class="aspect-[4/5] w-full object-cover"
+          />
+        </div>
+      </div>
+      <div class="py-2 lg:py-8">
+        <div
+          class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.2em] text-brand"
+        >
+          <span>{{ product.brand }}</span
+          ><span>·</span><span>{{ product.category }}</span>
+        </div>
+        <h1 class="mt-3 text-3xl font-semibold tracking-[-.05em] sm:text-4xl">
+          {{ product.name }}
+        </h1>
+        <div class="mt-3 flex items-center gap-3">
+          <span class="text-xl font-bold"
+            >${{ shop.price(product).toFixed(2) }}</span
+          ><span
+            v-if="product.salePrice"
+            class="text-sm text-gray-400 line-through"
+            >${{ product.price.toFixed(2) }}</span
+          ><span class="text-xs text-gray-500"
+            >★ {{ product.rating }} ({{ product.reviews }} reviews)</span
+          >
+        </div>
+        <p class="mt-6 text-sm leading-7 text-gray-500">
+          {{ product.description }}
+        </p>
+        <div class="mt-7">
+          <div
+            class="mb-3 flex justify-between text-xs font-bold uppercase tracking-wider"
+          >
+            <label>Color</label
+            ><span class="font-normal normal-case text-gray-500">{{
+              color
+            }}</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button
+              v-for="c in product.colors"
+              :key="c"
+              class="rounded-full border px-4 py-2 text-xs transition"
+              :class="
+                color === c
+                  ? 'border-ink bg-ink text-white'
+                  : 'border-gray-200 hover:border-ink'
+              "
+              @click="color = c"
+            >
+              {{ c }}
+            </button>
+          </div>
+        </div>
+        <div class="mt-6">
+          <div
+            class="mb-3 flex justify-between text-xs font-bold uppercase tracking-wider"
+          >
+            <label>Size</label
+            ><span class="font-normal normal-case text-gray-500"
+              >Size guide</span
+            >
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button
+              v-for="s in product.sizes"
+              :key="s"
+              class="min-w-12 rounded-xl border px-3 py-3 text-xs transition"
+              :class="
+                size === s
+                  ? 'border-ink bg-ink text-white'
+                  : 'border-gray-200 hover:border-ink'
+              "
+              @click="size = s"
+            >
+              {{ s }}
+            </button>
+          </div>
+        </div>
+        <div class="mt-7 flex gap-3">
+          <div class="flex items-center rounded-full border border-gray-200">
+            <button
+              class="px-4 py-3"
+              :disabled="quantity <= 1"
+              @click="quantity--"
+            >
+              −</button
+            ><span class="min-w-5 text-center text-sm">{{ quantity }}</span
+            ><button
+              class="px-4 py-3"
+              :disabled="quantity >= product.stock"
+              @click="quantity++"
+            >
+              +
+            </button>
+          </div>
+          <button
+            class="flex-1 rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-brand disabled:opacity-50"
+            :disabled="product.stock < 1"
+            @click="shop.addToCart(product, size, color, quantity)"
+          >
+            {{
+              product.stock > 0
+                ? "Add to bag — $" + (shop.price(product) * quantity).toFixed(2)
+                : "Out of stock"
+            }}</button
+          ><button
+            class="h-12 w-12 rounded-full border border-gray-200 text-xl"
+            :aria-label="
+              shop.wishlist.includes(product.id)
+                ? 'Remove from wishlist'
+                : 'Add to wishlist'
+            "
+            @click="shop.toggleWishlist(product.id)"
+          >
+            {{ shop.wishlist.includes(product.id) ? "♥" : "♡" }}
+          </button>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">
+          ✓ {{ product.stock }} in stock · Demo inventory
+        </p>
+        <div class="mt-8 border-t border-gray-100 pt-5">
+          <p class="text-sm font-semibold">
+            Easy everyday, thoughtfully chosen.
+          </p>
+          <p class="mt-2 text-xs leading-6 text-gray-500">
+            Shipping is calculated at checkout. Orders over $75 qualify for
+            complimentary demo shipping.
+          </p>
+        </div>
+      </div>
+    </div>
+    <section class="mt-16">
+      <div class="mb-6 flex items-end justify-between">
+        <h2 class="text-2xl font-semibold tracking-tight">You may also like</h2>
+        <NuxtLink to="/shop" class="text-xs font-bold uppercase tracking-wider"
+          >Shop all ↗</NuxtLink
+        >
+      </div>
+      <ProductGrid :products="related" />
+    </section>
+  </div>
+  <div v-else class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+    <EmptyState
+      title="Piece not found"
+      description="This product may have moved. Explore the rest of the collection."
+      to="/shop"
+      action-label="Shop all"
+    />
+  </div>
+</template>

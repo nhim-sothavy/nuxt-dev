@@ -23,7 +23,7 @@ export const products: Product[] = [
     ],
     "stock": 9,
     "images": [
-      "https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=900&q=85"
+      "https://template.canva.com/EAHPOobznvg/1/0/1245w-jAOFxuetGX0.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T083534Z&X-Amz-Expires=8251&X-Amz-Signature=ac1341aa35992af1bd06bafc67f9e0ea04bcd6a716651c2b0b981f7847a99944&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A53%3A05%20GMT"
     ],
     "rating": 4.3,
     "reviews": 25,
@@ -52,7 +52,7 @@ export const products: Product[] = [
     ],
     "stock": 10,
     "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85"
+      "https://template.canva.com/EAHOUVrbTek/2/0/1245w-0tmzt7EzKE8.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T081026Z&X-Amz-Expires=10036&X-Amz-Signature=d6da8ce4b9e71598b028c09cda0af9809c9294a8aa69bdabe9503cac7fecac07&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A57%3A42%20GMT"
     ],
     "rating": 4.4,
     "reviews": 32,
@@ -80,7 +80,7 @@ export const products: Product[] = [
     ],
     "stock": 11,
     "images": [
-      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=900&q=85"
+      "https://template.canva.com/EAHPOpAF5Lo/1/0/1245w-cpO5Zu33Cf8.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T045531Z&X-Amz-Expires=19993&X-Amz-Signature=b18af93b13447750cf72df9119376e467acb40f665554b4162934eba4d358e2a&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A28%3A44%20GMT"
     ],
     "rating": 4.5,
     "reviews": 39,
@@ -108,7 +108,7 @@ export const products: Product[] = [
     ],
     "stock": 12,
     "images": [
-      "https://images.unsplash.com/photo-1506629905607-d9a5d4d6f7f4?auto=format&fit=crop&w=900&q=85"
+      "https://template.canva.com/EAHPOpAF5Lo/1/0/1245w-cpO5Zu33Cf8.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T045531Z&X-Amz-Expires=19993&X-Amz-Signature=b18af93b13447750cf72df9119376e467acb40f665554b4162934eba4d358e2a&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A28%3A44%20GMT"
     ],
     "rating": 4.6,
     "reviews": 46,
@@ -136,7 +136,7 @@ export const products: Product[] = [
     ],
     "stock": 13,
     "images": [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=85"
+      "https://template.canva.com/EAG8PcoV4U0/1/0/1245w-a914d8fcFUA.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T142657Z&X-Amz-Expires=72956&X-Amz-Signature=9077752eadde47690379e2bf61c7aafe1550d4f16858de4d38d5b9b418847785&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A42%3A53%20GMT"
     ],
     "rating": 4.7,
     "reviews": 53,

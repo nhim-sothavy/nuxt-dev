@@ -37,7 +37,7 @@ function submitSearch() {
     <template #title>
       <NuxtLink to="/" aria-label="VY Clothing Store home">
         <img
-          src="/logo.png"
+          src="/logo-2.png"
           alt="VY Clothing Store"
           class="h-12 w-auto max-w-[150px] object-contain sm:h-14"
         />
