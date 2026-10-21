@@ -56,7 +56,7 @@ function remove(id: string) {
         v-model="q"
         class="min-w-0 flex-1 rounded-full border border-gray-200 px-4 py-3 text-sm"
         placeholder="Search products"
-      />
+      >
 
       <select
         v-model="category"
@@ -98,7 +98,7 @@ function remove(id: string) {
                   :src="p.images[0]"
                   :alt="p.name"
                   class="h-12 w-10 rounded-lg object-cover"
-                />
+                >
 
                 <div>
                   <p class="font-semibold">{{ p.name }}</p>

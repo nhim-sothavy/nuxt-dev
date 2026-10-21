@@ -46,7 +46,7 @@ function submitSearch() {
           src="/logo.png"
           alt="VY Clothing Store"
           class="h-12 w-auto max-w-[150px] object-contain sm:h-14"
-        />
+        >
       </NuxtLink>
     </template>
 

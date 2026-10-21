@@ -57,7 +57,7 @@ watchEffect(() => {
               :src="img"
               :alt="product.name"
               class="h-20 w-16 object-cover"
-            />
+            >
           </button>
         </div>
         <div class="order-1 overflow-hidden rounded-2xl bg-mist sm:order-2">
@@ -65,7 +65,7 @@ watchEffect(() => {
             :src="product.images[activeImage]"
             :alt="product.name"
             class="aspect-[4/5] w-full object-cover"
-          />
+          >
         </div>
       </div>
       <div class="py-2 lg:py-8">

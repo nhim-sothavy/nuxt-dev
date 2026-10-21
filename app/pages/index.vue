@@ -42,7 +42,7 @@ const items = [
           :src="item"
           alt="Featured clothing collection"
           class="block h-[250px] w-full object-cover sm:h-[400px] lg:h-[600px]"
-        />
+        >
       </UCarousel>
     </section>
     <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 sm:py-8">
@@ -87,10 +87,10 @@ const items = [
             :src="`https://images.unsplash.com/${cat.img}?auto=format&fit=crop&w=900&q=85`"
             :alt="cat.title"
             class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-          />
+          >
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent"
-          ></div>
+          />
           <div class="absolute bottom-6 left-6 text-white">
             <h3 class="text-2xl font-semibold">{{ cat.title }}</h3>
             <p class="mt-1 text-xs text-white/80">{{ cat.sub }}</p>
@@ -147,7 +147,7 @@ const items = [
           <h2
             class="mt-3 text-4xl font-semibold leading-tight tracking-[-.06em] sm:text-5xl"
           >
-            Good style.<br />Zero effort.
+            Good style.<br >Zero effort.
           </h2>
           <p class="mt-4 max-w-sm text-sm leading-6 text-gray-600">
             Build a wardrobe that works as hard as you do with versatile pieces
@@ -164,7 +164,7 @@ const items = [
             src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1200&q=85"
             alt="Minimal modern outfit"
             class="h-full max-h-[460px] w-full object-cover"
-          />
+          >
         </div>
       </div>
     </section>

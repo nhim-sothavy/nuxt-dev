@@ -1,1 +1,159 @@
-<script setup lang="ts">import type { Product } from '~/types/shop';const props=defineProps<{product?:Product}>();const shop=useShop();const form=reactive({name:props.product?.name||'',description:props.product?.description||'',category:props.product?.category||'Tops',gender:props.product?.gender||'Women' as Product['gender'],price:props.product?.price??30,salePrice:props.product?.salePrice??0,stock:props.product?.stock??10,image:props.product?.images[0]||'https://placehold.co/600x800/f2f2f2/333?text=VY+Studio',sizes:props.product?.sizes.join(', ')||'S, M, L',colors:props.product?.colors.join(', ')||'Black, White'});function save(){if(form.name.trim().length<2||form.price<=0||form.stock<0||!form.image.trim()){shop.notify('Enter a name, positive price, non-negative stock, and image URL.','error');return}const base={name:form.name.trim(),description:form.description.trim(),category:form.category,gender:form.gender,price:Number(form.price),...(Number(form.salePrice)>0?{salePrice:Number(form.salePrice)}:{}),stock:Number(form.stock),images:[form.image.trim()],sizes:form.sizes.split(',').map(s=>s.trim()).filter(Boolean),colors:form.colors.split(',').map(s=>s.trim()).filter(Boolean)};if(props.product){Object.assign(props.product,base,{slug:form.name.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')});shop.saveProducts();shop.notify('Demo product updated.')}else{shop.products.unshift({id:`p-${Date.now()}`,slug:form.name.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),brand:'VY Studio',rating:4.5,reviews:0,isNew:true,isBestSeller:false,...base});shop.saveProducts();shop.notify('Demo product added.')}navigateTo('/admin/products')}</script><template><form class="mt-7 grid gap-5 md:grid-cols-2" @submit.prevent="save"><label class="text-xs font-semibold">Product name<input v-model="form.name" required class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold">Category<input v-model="form.category" required class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold">Audience<select v-model="form.gender" class="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm"><option>Women</option><option>Men</option><option>Accessories</option></select></label><label class="text-xs font-semibold">Price ($)<input v-model.number="form.price" type="number" min="0.01" step="0.01" required class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold">Sale price ($, optional)<input v-model.number="form.salePrice" type="number" min="0" step="0.01" class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold">Stock quantity<input v-model.number="form.stock" type="number" min="0" required class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold md:col-span-2">Image URL<input v-model="form.image" type="url" required class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold md:col-span-2">Description<textarea v-model="form.description" rows="3" class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></textarea></label><label class="text-xs font-semibold">Sizes (comma-separated)<input v-model="form.sizes" class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><label class="text-xs font-semibold">Colors (comma-separated)<input v-model="form.colors" class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"></label><div class="flex flex-wrap gap-3 md:col-span-2"><button class="rounded-full bg-ink px-6 py-3 text-xs font-bold uppercase tracking-wider text-white">Save demo product</button><NuxtLink to="/admin/products" class="rounded-full border border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-wider">Cancel</NuxtLink></div></form></template>
+<!-- <script setup lang="ts">
+import type { Product } from "~/types/shop";
+const props = defineProps<{ product?: Product }>();
+const shop = useShop();
+const form = reactive({
+  name: props.product?.name || "",
+  description: props.product?.description || "",
+  category: props.product?.category || "Tops",
+  gender: props.product?.gender || ("Women" as Product["gender"]),
+  price: props.product?.price ?? 30,
+  salePrice: props.product?.salePrice ?? 0,
+  stock: props.product?.stock ?? 10,
+  image:
+    props.product?.images[0] ||
+    "https://placehold.co/600x800/f2f2f2/333?text=VY+Studio",
+  sizes: props.product?.sizes.join(", ") || "S, M, L",
+  colors: props.product?.colors.join(", ") || "Black, White",
+});
+function save() {
+  if (
+    form.name.trim().length < 2 ||
+    form.price <= 0 ||
+    form.stock < 0 ||
+    !form.image.trim()
+  ) {
+    shop.notify(
+      "Enter a name, positive price, non-negative stock, and image URL.",
+      "error",
+    );
+    return;
+  }
+  const base = {
+    name: form.name.trim(),
+    description: form.description.trim(),
+    category: form.category,
+    gender: form.gender,
+    price: Number(form.price),
+    ...(Number(form.salePrice) > 0
+      ? { salePrice: Number(form.salePrice) }
+      : {}),
+    stock: Number(form.stock),
+    images: [form.image.trim()],
+    sizes: form.sizes
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean),
+    colors: form.colors
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean),
+  };
+  if (props.product) {
+    Object.assign(props.product, base, {
+      slug: form.name
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
+    });
+    shop.saveProducts();
+    shop.notify("Demo product updated.");
+  } else {
+    shop.products.unshift({
+      id: `p-${Date.now()}`,
+      slug: form.name
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
+      brand: "VY Studio",
+      rating: 4.5,
+      reviews: 0,
+      isNew: true,
+      isBestSeller: false,
+      ...base,
+    });
+    shop.saveProducts();
+    shop.notify("Demo product added.");
+  }
+  navigateTo("/admin/products");
+}
+</script>
+<template>
+  <form class="mt-7 grid gap-5 md:grid-cols-2" @submit.prevent="save">
+    <label class="text-xs font-semibold"
+      >Product name<input
+        v-model="form.name"
+        required
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold"
+      >Category<input
+        v-model="form.category"
+        required
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold"
+      >Audience<select
+        v-model="form.gender"
+        class="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm"
+      >
+        <option>Women</option>
+        <option>Men</option>
+        <option>Accessories</option>
+      </select></label
+    ><label class="text-xs font-semibold"
+      >Price ($)<input
+        v-model.number="form.price"
+        type="number"
+        min="0.01"
+        step="0.01"
+        required
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold"
+      >Sale price ($, optional)<input
+        v-model.number="form.salePrice"
+        type="number"
+        min="0"
+        step="0.01"
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold"
+      >Stock quantity<input
+        v-model.number="form.stock"
+        type="number"
+        min="0"
+        required
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold md:col-span-2"
+      >Image URL<input
+        v-model="form.image"
+        type="url"
+        required
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold md:col-span-2"
+      >Description<textarea
+        v-model="form.description"
+        rows="3"
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"
+      ></textarea></label
+    ><label class="text-xs font-semibold"
+      >Sizes (comma-separated)<input
+        v-model="form.sizes"
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm" /></label
+    ><label class="text-xs font-semibold"
+      >Colors (comma-separated)<input
+        v-model="form.colors"
+        class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm"
+    /></label>
+    <div class="flex flex-wrap gap-3 md:col-span-2">
+      <button
+        class="rounded-full bg-ink px-6 py-3 text-xs font-bold uppercase tracking-wider text-white"
+      >
+        Save demo product</button
+      ><NuxtLink
+        to="/admin/products"
+        class="rounded-full border border-gray-200 px-6 py-3 text-xs font-bold uppercase tracking-wider"
+        >Cancel</NuxtLink
+      >
+    </div>
+  </form>
+</template> -->

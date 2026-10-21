@@ -1,1 +1,49 @@
-<template><div><section class="bg-mist py-16 sm:py-24"><div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 max-w-4xl"><p class="text-xs font-bold uppercase tracking-[.2em] text-brand">A little about us</p><h1 class="mt-4 text-5xl font-semibold leading-tight tracking-[-.06em] sm:text-7xl">Style should feel<br>like <span class="text-brand">you.</span></h1><p class="mt-6 max-w-2xl text-base leading-7 text-gray-500">VY is a frontend concept for a modern everyday fashion label. We believe a good wardrobe is not about having more—it is about finding pieces that feel right, work hard, and make getting dressed easier.</p></div></section><section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 py-16 md:grid-cols-2 md:items-center"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85" alt="Everyday fashion" class="h-[420px] w-full rounded-3xl object-cover"><div><p class="text-xs font-bold uppercase tracking-[.2em] text-brand">Our point of view</p><h2 class="mt-3 text-3xl font-semibold tracking-tight">Less, but better considered.</h2><p class="mt-4 text-sm leading-7 text-gray-500">We curate versatile silhouettes, considered colors, and comfortable essentials that can move from one part of your day to the next. This sample store demonstrates how a fashion e-commerce experience can feel—from discovery to checkout.</p><NuxtLink to="/shop" class="mt-6 inline-flex rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-wider text-white">Explore the collection ↗</NuxtLink></div></section></div></template>
+<template>
+  <div>
+    <section class="bg-mist py-16 sm:py-24">
+      <div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-brand">
+          A little about us
+        </p>
+        <h1
+          class="mt-4 text-5xl font-semibold leading-tight tracking-[-.06em] sm:text-7xl"
+        >
+          Style should feel<br >like <span class="text-brand">you.</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-base leading-7 text-gray-500">
+          VY is a frontend concept for a modern everyday fashion label. We
+          believe a good wardrobe is not about having more—it is about finding
+          pieces that feel right, work hard, and make getting dressed easier.
+        </p>
+      </div>
+    </section>
+    <section
+      class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 py-16 md:grid-cols-2 md:items-center"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85"
+        alt="Everyday fashion"
+        class="h-[420px] w-full rounded-3xl object-cover"
+      >
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-brand">
+          Our point of view
+        </p>
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight">
+          Less, but better considered.
+        </h2>
+        <p class="mt-4 text-sm leading-7 text-gray-500">
+          We curate versatile silhouettes, considered colors, and comfortable
+          essentials that can move from one part of your day to the next. This
+          sample store demonstrates how a fashion e-commerce experience can
+          feel—from discovery to checkout.
+        </p>
+        <NuxtLink
+          to="/shop"
+          class="mt-6 inline-flex rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-wider text-white"
+          >Explore the collection ↗</NuxtLink
+        >
+      </div>
+    </section>
+  </div>
+</template>

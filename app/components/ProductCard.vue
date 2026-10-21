@@ -18,7 +18,7 @@ const saved = computed(() => shop.wishlist.includes(props.product.id));
             ($event.target as HTMLImageElement).src =
               'https://placehold.co/600x800/f2f2f2/333?text=VY+Studio'
           "
-        /><span
+        ><span
           v-if="product.isNew"
           class="absolute left-3 top-3 rounded-full bg-[#EC4899] text-white px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em]"
           >New</span
