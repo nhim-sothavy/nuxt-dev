@@ -1,66 +1,73 @@
-<!-- <script setup lang="ts">
-const shop = useShop();
-const email = ref("");
-const password = ref("");
-function submit() {
-  if (!/^\S+@\S+\.\S+$/.test(email.value) || password.value.length < 4) {
-    shop.notify(
-      "Enter a valid email and at least 4 demo password characters.",
-      "error",
-    );
-    return;
-  }
-  shop.user = {
-    name: email.value
-      .split("@")[0]
-      .replace(/[._-]/g, " ")
-      .replace(/\w/g, (c) => c.toUpperCase()),
-    email: email.value,
-  };
-  shop.saveUser();
-  shop.notify("Demo login successful. This is not secure authentication.");
-  navigateTo("/account");
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+definePageMeta({
+  layout: 'default'
+})
+
+const email = ref('')
+const password = ref('')
+
+function handleLogin() {
+  console.log('Login submitted:', email.value)
 }
 </script>
+
 <template>
-  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-    <div class="mx-auto max-w-md">
-      <p class="text-xs font-bold uppercase tracking-[.2em] text-brand">
-        Welcome back
-      </p>
-      <h1 class="mt-2 text-4xl font-semibold tracking-tight">
-        Log in<span class="text-brand">.</span>
+  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
+      <h1 class="mb-2 text-3xl font-bold text-gray-900">
+        Welcome Back
       </h1>
-      <p class="mt-3 text-sm text-gray-500">
-        Demo only—use any email and a password of at least 4 characters. Do not
-        use a real password.
+
+      <p class="mb-8 text-gray-500">
+        Sign in to your account
       </p>
-      <form class="mt-7 space-y-4" @submit.prevent="submit">
-        <label class="block text-xs font-semibold"
-          >Email<input
+
+      <form class="space-y-5" @submit.prevent="handleLogin">
+        <div>
+          <label for="email" class="mb-2 block text-sm font-medium">
+            Email Address
+          </label>
+          <input
+            id="email"
             v-model="email"
             type="email"
             required
-            class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-brand" /></label
-        ><label class="block text-xs font-semibold"
-          >Demo password<input
+            placeholder="you@example.com"
+            class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label for="password" class="mb-2 block text-sm font-medium">
+            Password
+          </label>
+          <input
+            id="password"
             v-model="password"
             type="password"
-            minlength="4"
             required
-            class="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-brand" /></label
-        ><button
-          class="w-full rounded-full bg-ink px-6 py-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-brand"
+            placeholder="Enter your password"
+            class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
         >
-          Log in to demo account
+          Sign In
         </button>
       </form>
-      <p class="mt-5 text-center text-sm text-gray-500">
-        New to VY?
-        <NuxtLink to="/register" class="font-semibold text-brand"
-          >Create an account</NuxtLink
-        >
+
+      <p class="mt-6 text-center text-sm text-gray-500">
+        Don't have an account?
+        <NuxtLink to="/register" class="font-semibold text-blue-600 hover:underline">
+          Register
+        </NuxtLink>
       </p>
     </div>
   </div>
-</template> -->
+</template>
