@@ -32,7 +32,7 @@ function submitSearch() {
 </script>
 
 <template>
-  <UHeader>
+  <UHeader :ui="{container:'max-w-full'}">
     <!-- Logo -->
     <template #title>
       <NuxtLink to="/" aria-label="VY Clothing Store home">
@@ -109,23 +109,26 @@ function submitSearch() {
       >
         <UIcon name="i-lucide-user-round" class="size-5" />
       </NuxtLink>
-      
-<!-- Wishlist -->
-<NuxtLink
-  to="/wishlist"
-  class="relative inline-flex items-center justify-center rounded-full p-2 text-gray-700 transition-colors duration-300 hover:bg-pink-50 hover:text-pink-600 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 dark:text-gray-200 dark:hover:bg-gray-800"
-  aria-label="Wishlist"
->
-  <UIcon name="i-lucide-heart" class="size-5 transition-transform duration-300 hover:scale-110" />
 
-  <!-- Wishlist count -->
-  <span
-    v-if="shop.wishlist?.length > 0"
-    class="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-pink-600 text-[10px] font-bold leading-none text-white"
-  >
-    {{ shop.wishlist.length }}
-  </span>
-</NuxtLink>
+      <!-- Wishlist -->
+      <NuxtLink
+        to="/wishlist"
+        class="relative inline-flex items-center justify-center rounded-full p-2 text-gray-700 transition-colors duration-300 hover:bg-pink-50 hover:text-pink-600 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 dark:text-gray-200 dark:hover:bg-gray-800"
+        aria-label="Wishlist"
+      >
+        <UIcon
+          name="i-lucide-heart"
+          class="size-5 transition-transform duration-300 hover:scale-110"
+        />
+
+        <!-- Wishlist count -->
+        <span
+          v-if="shop.wishlist?.length > 0"
+          class="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-pink-600 text-[10px] font-bold leading-none text-white"
+        >
+          {{ shop.wishlist.length }}
+        </span>
+      </NuxtLink>
 
       <!-- Shopping cart -->
       <NuxtLink
@@ -144,4 +147,5 @@ function submitSearch() {
       </NuxtLink>
     </template>
   </UHeader>
+ 
 </template>

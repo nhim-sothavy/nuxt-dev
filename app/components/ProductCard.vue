@@ -20,11 +20,11 @@ const saved = computed(() => shop.wishlist.includes(props.product.id));
           "
         /><span
           v-if="product.isNew"
-          class="absolute left-3 top-3 rounded-full bg-pink-200 px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em]"
+          class="absolute left-3 top-3 rounded-full bg-[#EC4899] text-white px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em]"
           >New</span
         ><span
           v-else-if="product.salePrice"
-          class="absolute left-3 top-3 rounded-full bg-brand px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em] text-white"
+          class="absolute left-3 top-3 rounded-full bg-[#FACC15] px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em] "
           >Sale</span
         ></NuxtLink
       >

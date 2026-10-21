@@ -1,54 +1,55 @@
 <script setup lang="ts">
-  const shop = useShop();
-  const newProducts = computed(() =>
-    shop.products.filter((p) => p.isNew).slice(0, 4),
-  );
-  const bestProducts = computed(() =>
-    shop.products.filter((p) => p.isBestSeller).slice(0, 4),
-  );
-  useSeoMeta({
-    title: "VY Clothing Store — Everyday, elevated",
-    description: "Discover modern essentials and thoughtful everyday fashion.",
-  });
-  const items = [
-  'https://template.canva.com/EAE6-K3qkzk/2/0/1600w-xzuyujO7aVc.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T024408Z&X-Amz-Expires=29544&X-Amz-Signature=8d2e56f950b9e673993188ac698229d6227927f2aa7f30fb6ea20e4d3550b706&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A56%3A32%20GMT',
-  'https://template.canva.com/EAE-p1QPW_4/2/0/1600w-j-u1jFPylT4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T214106Z&X-Amz-Expires=47062&X-Amz-Signature=b5f3c4a5ac152151f67fe1b8776c586c604dcc1a50b7bf07702a3d872d13e5ae&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A45%3A28%20GMT',
-  'https://template.canva.com/EAFgoIbXL34/2/0/1600w-DWBM9PCn-0w.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T133115Z&X-Amz-Expires=77869&X-Amz-Signature=23bd601351551b41ebbdd4a5596553753116155329c507a6fc07992d78827d96&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2011%3A09%3A04%20GMT',
-]
+const shop = useShop();
+const newProducts = computed(() =>
+  shop.products.filter((p) => p.isNew).slice(0, 4),
+);
+const bestProducts = computed(() =>
+  shop.products.filter((p) => p.isBestSeller).slice(0, 4),
+);
+useSeoMeta({
+  title: "VY Clothing Store — Everyday, elevated",
+  description: "Discover modern essentials and thoughtful everyday fashion.",
+});
+const items = [
+  "https://template.canva.com/EAE6-K3qkzk/2/0/1600w-xzuyujO7aVc.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261020T024408Z&X-Amz-Expires=29544&X-Amz-Signature=8d2e56f950b9e673993188ac698229d6227927f2aa7f30fb6ea20e4d3550b706&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A56%3A32%20GMT",
+  "https://template.canva.com/EAE-p1QPW_4/2/0/1600w-j-u1jFPylT4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T214106Z&X-Amz-Expires=47062&X-Amz-Signature=b5f3c4a5ac152151f67fe1b8776c586c604dcc1a50b7bf07702a3d872d13e5ae&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2010%3A45%3A28%20GMT",
+  "https://template.canva.com/EAFgoIbXL34/2/0/1600w-DWBM9PCn-0w.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDK3B5XO%2F20261019%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261019T133115Z&X-Amz-Expires=77869&X-Amz-Signature=23bd601351551b41ebbdd4a5596553753116155329c507a6fc07992d78827d96&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Tue%2C%2020%20Oct%202026%2011%3A09%3A04%20GMT",
+];
 </script>
 <template>
   <div>
-  
-<section class="mx-auto w-full max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8">
-  <UCarousel
-    v-slot="{ item }"
-    :items="items"
-    loop
-    arrows
-    :autoplay="{ delay: 2000 }"
-    wheel-gestures
-    :prev="{ variant: 'solid' }"
-    :next="{ variant: 'solid' }"
-    :ui="{
-      item: 'ps-0 basis-full',
-      prev: 'sm:start-8',
-      next: 'sm:end-8',
-      container: 'ms-0'
-    }"
-    class="w-full"
-  >
-    <img
-      :src="item"
-      alt="Featured clothing collection"
-      class="block h-[250px] w-full object-cover sm:h-[400px] lg:h-[600px]"
-    />
-  </UCarousel>
-</section>
+    <section
+      class="mx-auto w-full max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-8"
+    >
+      <UCarousel
+        v-slot="{ item }"
+        :items="items"
+        loop
+        arrows
+        :autoplay="{ delay: 2000 }"
+        wheel-gestures
+        :prev="{ variant: 'solid' }"
+        :next="{ variant: 'solid' }"
+        :ui="{
+          item: 'ps-0 basis-full',
+          prev: 'sm:start-8',
+          next: 'sm:end-8',
+          container: 'ms-0',
+        }"
+        class="w-full"
+      >
+        <img
+          :src="item"
+          alt="Featured clothing collection"
+          class="block h-[250px] w-full object-cover sm:h-[400px] lg:h-[600px]"
+        />
+      </UCarousel>
+    </section>
     <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 sm:py-8">
       <div class="mb-7 flex items-end justify-between">
         <div>
           <h2 class="mt-2 text-3xl font-semibold tracking-[-.05em] sm:text-4xl">
-            Shop by mood.
+            Find your love
           </h2>
         </div>
         <NuxtLink
@@ -101,7 +102,7 @@
         >
       </div>
     </section>
-    <section class="bg-mist py-16 sm:py-10">
+    <section class="py-16 sm:py-10 bg-yellow-50">
       <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-8 flex items-end justify-between">
           <div>
@@ -120,11 +121,13 @@
         <ProductGrid :products="newProducts" />
       </div>
     </section>
-    <section class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-10">
+    <section
+      class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-10"
+    >
       <div class="mb-8 flex items-end justify-between">
         <div>
           <h2 class="mt-2 text-3xl font-semibold tracking-[-.05em] sm:text-4xl">
-            The good stuff
+            Best Seller
           </h2>
         </div>
         <NuxtLink
